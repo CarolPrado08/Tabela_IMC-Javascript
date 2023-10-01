@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cardo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+   
+    <title>Calculadora IMC</title>
+
+
+    <script>
+
+function calcular() {
+    var peso = parseFloat(document.getElementById("num_1").value);
+    var altura = parseFloat(document.getElementById("num_2").value);
+
+    var div = document.getElementById("resp");
+
+    if (isNaN(peso) || isNaN(altura) || altura <= 0 || peso <= 0) {
+        div.innerHTML = `<h2>Por favor, insira valores válidos para peso e altura.</h2>`;
+        div.style.display = "block";
+        return;
+    }
+
+    var imc = (peso / (altura * altura)).toFixed(2);
+    var classificacao = "";
+
+    if (imc < 18.5) {
+        classificacao = "Abaixo do peso";
+    } else if (imc >= 18.5 && imc < 24.9) {
+        classificacao = "Peso normal";
+    } else if (imc >= 25 && imc < 29.9) {
+        classificacao = "Acima do peso";
+    } else {
+        classificacao = "Obesidade";
+    }
+
+    div.innerHTML = `<h2>Seu IMC é: ${imc}</h2><p>Classificação: ${classificacao}</p>`;
+    div.style.display = "block";
+}
+         
+        
+    </script>
+
+    <style>
+        body{
+            background-image: url(img/bg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: max-content;
+            font-family: 'Cardo', serif;
+        }
+
+        h1{
+            color: #000;
+            text-align: center;
+            margin-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        #resp{
+            display: none;
+            padding: 2px;
+            margin: 0 auto;
+            background-color: rgb(167, 176, 224);
+            width: max-content;
+            border-radius: 5px;
+            color: #000;
+            font-size: 18px;
+        }
+
+        #container{
+            font-family: 'Lato', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            text-align: center;
+            font-size: 16px;
+
+            border-radius: 25px;
+            margin: auto;
+            margin-top: 40px;
+            width: 440px;
+            height: 320px;
+            padding-top: 25px ;
+            background-color: rgb(219, 217, 219);
+        }
+
+        #container label{
+
+            font-size: 22px;
+            color: #000000;
+        }
+
+        input{
+            width: 190px;
+            height: 25px;
+            margin: 0 auto;
+            border-radius: 25px;
+        }
+
+        .botao{
+            margin: 0 auto;
+            width: 150px;
+            border-radius: 25px;
+            font-size: 18px;
+            padding: 5px;
+            margin-top: 15px;
+            background-color: rgb(90, 124, 193);
+            transition: transform .2s ease-in-out;
+
+        }
+
+        .botao:hover{
+        
+            transform: scale(1.1);
+        }
+
+        /* Tabela */
+
+        .subtitulo-container{
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .subtitulo{
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .icone-seta{
+            width: 40px;
+            margin: auto;
+            margin-bottom: 30px;
+            
+        }
+
+        
+
+        /* Celulares */
+
+        @media (max-width: 600px) {
+            #container{
+            margin-top: 40px;
+            width: 300px;
+            height: 350px;
+            }
+            #container label{
+            font-size: 22px;
+        }
+        .subtitulo{
+            margin-top: 20px;
+        }
+
+    }
+        
+
+    </style>
+
+</head>
+<body>
+
+    <h1>Calcule aqui o seu IMC:</h1>
+
+     <div id="container">
+        <div id="resp"></div>
+        <div id="classificar"></div>
+
+        <label>Qual é o seu peso? (ex: 75)</label>
+        <input type="number" id="num_1">
+
+        <label>Qual é a sua altura? (ex: 1.80)</label>
+        <input type="number" id="num_2">
+
+
+        <button  class="botao" onclick="calcular()">Calcular IMC</button>
+    </div>
+
+    <div class="subtitulo-container">
+    <h2 class="subtitulo">Veja a tabela a seguir e entenda o seu IMC</h2>
+    <img src="img/icons8-duplo-para-baixo-50.png" class="icone-seta">
+    <img src="img/Tabela_IMC.jpg" alt="">
+    </div>
+   
+
+    
+</body>
+</html>
